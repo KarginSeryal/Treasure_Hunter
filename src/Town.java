@@ -5,7 +5,7 @@
 public class Town
 {
     //instance variables
-    private Hunter hunter;
+    private Hunter hunter;  //test
     private Shop shop;
     private Terrain terrain;
     private String printMessage;
