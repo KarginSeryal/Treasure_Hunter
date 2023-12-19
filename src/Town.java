@@ -121,17 +121,25 @@ public class Town
         {
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int)(Math.random() * 10) + 1;
-            if (Math.random() > noTroubleChance)
+            if (Math.random() > noTroubleChance && Math.random() < 0.7)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
             }
-            else
+            else if(Math.random() < noTroubleChance)
             {
                 printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
+            }else if(Math.random() > 0.7){
+                printMessage += "You found a mysterious chest on the outskirts of the town.";
+                printMessage += "\nYou unlocked the chest and received the Mythic " + treasure + ".";
+                if(hunter.hasItemInKit(treasure)){
+                    printMessage += "\n\nYou already have the " + treasure + ".";
+                    printMessage += "\nIt will be recycled for gold.";
+                    hunter.changeGold(+7);
+                }
             }
         }
     }
