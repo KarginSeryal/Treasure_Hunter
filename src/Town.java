@@ -180,4 +180,12 @@ public class Town
         double rand = Math.random();
         return (rand < 0.5);
     }
+
+    public String getTreasure(){
+        return treasure;
+    }
+
+    public boolean isHasTreasure() {
+        return hasTreasure;
+    }
 }
