@@ -5,11 +5,13 @@
 public class Town
 {
     //instance variables
-    private Hunter hunter;  //test
+    private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private String treasure;
+    private boolean hasTreasure;
 
     //Constructor
     /**
@@ -30,6 +32,15 @@ public class Town
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+
+        switch((int) (Math.random()*4)+1){
+            case 1: hasTreasure = false;
+            case 2: hasTreasure = true; treasure = "19$ Fortnite card";
+            case 3: hasTreasure = true; treasure = "Book of Rizzilations";
+            case 4: hasTreasure = true; treasure = "RTX 4090 GPU";
+        }
+
     }
 
     public String getLatestNews()
