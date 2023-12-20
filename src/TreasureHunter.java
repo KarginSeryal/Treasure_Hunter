@@ -13,6 +13,8 @@ public class TreasureHunter
     private Hunter hunter;
     private boolean hardMode;
 
+    private boolean easyMode;
+
     //Constructor
     /**
      * Constructs the Treasure Hunter game.
@@ -54,7 +56,15 @@ public class TreasureHunter
         {
             hardMode = true;
         }
+        String easy = scanner.nextLine();
+         if (easy.equals("n") || easy.equals("N"))
+    {
+        easyMode = true;
     }
+    }
+
+
+
 
     /**
      * Creates a new town and adds the Hunter to it.
@@ -75,7 +85,7 @@ public class TreasureHunter
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
-        Shop shop = new Shop(markdown);
+        Shop shop = new Shop(markdown, easyMode);
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
