@@ -7,23 +7,28 @@ public class Hunter
     //Keeps the items in the kit separate
     private static final String KIT_DELIMITER = ";";
 
+
     //instance variables
     private String hunterName;
     private String kit;
     private int gold;
 
+
+    private static int hunterTreasureAmount;
     //Constructor
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
-     * @param name The hunter's name.
+     * @param
      */
     public Hunter(String hunterName, int startingGold)
     {
         this.hunterName = hunterName;
         kit = "";
         gold = startingGold;
+        hunterTreasureAmount = 0;
     }
+
 
     //Accessors
     public String getHunterName()
@@ -31,15 +36,18 @@ public class Hunter
         return hunterName;
     }
 
+
     public String getKit()
     {
         return kit;
     }
 
+
     public int getGold()
     {
         return gold;
     }
+
 
     public void changeGold(int modifier)
     {
@@ -47,8 +55,11 @@ public class Hunter
         if (gold < 0)
         {
             gold = 0;
+
+
         }
     }
+
 
     /**
      * Buys an item from a shop.
@@ -65,10 +76,12 @@ public class Hunter
             return false;
         }
 
+
         gold -= costOfItem;
         addItem(item);
         return true;
     }
+
 
     /**
      * The Hunter is selling an item to a shop for gold.<p>
@@ -85,10 +98,12 @@ public class Hunter
             return false;
         }
 
+
         gold += buyBackPrice;
         removeItemFromKit(item);
         return true;
     }
+
 
     /**
      *  Removes an item from the kit.
@@ -99,6 +114,7 @@ public class Hunter
     {
         int itmIdx = kit.indexOf(item);
 
+
         // if item is found
         if (itmIdx >= 0)
         {
@@ -106,10 +122,12 @@ public class Hunter
             int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
             tmpKit += kit.substring(endIdx + 1);
 
+
             // update kit
             kit = tmpKit;
         }
     }
+
 
     /**
      * Checks to make sure that the item is not already in the kit.
@@ -127,8 +145,10 @@ public class Hunter
             return true;
         }
 
+
         return false;
     }
+
 
     /**
      * Searches the kit String for a specified item.
@@ -140,6 +160,7 @@ public class Hunter
     public boolean hasItemInKit(String item)
     {
         int placeholder = 0;
+
 
         while (placeholder < kit.length() - 1)
         {
@@ -155,6 +176,7 @@ public class Hunter
         return false;
     }
 
+
     /** Returns a printable representation of the inventory, which
      *  is a list of the items in kit, with the KIT_DELIMITER replaced with a space
      *
@@ -165,7 +187,9 @@ public class Hunter
         String printableKit = kit;
         String space = " ";
 
+
         int index = 0;
+
 
         while (printableKit.indexOf(KIT_DELIMITER) != -1)
         {
@@ -174,6 +198,7 @@ public class Hunter
         }
         return printableKit;
     }
+
 
     /**
      * @return A string representation of the hunter.
@@ -187,4 +212,30 @@ public class Hunter
         }
         return str;
     }
-}
+
+
+    public boolean huntForTreasure() {
+        if (hunterTreasureAmount == 3) {
+            System.out.println("Congratulations! You've found all three treasures. Game Over!");
+
+
+
+
+        }
+        return false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    } }
+
