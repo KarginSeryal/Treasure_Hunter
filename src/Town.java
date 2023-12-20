@@ -33,12 +33,21 @@ public class Town
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
 
-
-        switch((int) (Math.random()*4)+1){
-            case 1: hasTreasure = false;
-            case 2: hasTreasure = true; treasure = "19$ Fortnite card";
-            case 3: hasTreasure = true; treasure = "Book of Rizzilations";
-            case 4: hasTreasure = true; treasure = "RTX 4090 GPU";
+        int random = (int) (Math.random() * 4) + 1;
+        switch(random){
+            case 1 -> hasTreasure = false;
+            case 2 -> {
+                hasTreasure = true;
+                treasure = "19$ Fortnite card";
+            }
+            case 3 -> {
+                hasTreasure = true;
+                treasure = "Book of Rizzilations";
+            }
+            case 4 -> {
+                hasTreasure = true;
+                treasure = "RTX 4090 GPU";
+            }
         }
 
     }
@@ -135,6 +144,7 @@ public class Town
             }else if(Math.random() > 0.7){
                 printMessage += "You found a mysterious chest on the outskirts of the town.";
                 printMessage += "\nYou unlocked the chest and received the Mythic " + treasure + ".";
+                hunter.addItem(treasure);
                 if(hunter.hasItemInKit(treasure)){
                     printMessage += "\n\nYou already have the " + treasure + ".";
                     printMessage += "\nIt will be recycled for gold.";
