@@ -123,8 +123,14 @@ public class TreasureHunter
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
      * @param choice The action to process.
      */
-    private void processChoice(String choice)
+    public void processChoice(String choice)
     {
+
+        if(hunter.huntForTreasure()){
+            System.out.println("You did great " + hunter.getHunterName() + ".");
+            System.out.println("Thank you for freeing use from the cursed artifacts.");
+            System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        }
         if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
         {
             currentTown.enterShop(choice);
@@ -146,9 +152,17 @@ public class TreasureHunter
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         }
-        else
+        else if(choice.equals("SecR3tCode"))
+        {
+            System.out.println("You did well " + hunter.getHunterName() + ".");
+            processChoice("x");
+        }else
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+
+
+
+
     }
 }
