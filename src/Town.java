@@ -117,18 +117,18 @@ public class Town
         {
             printMessage = "You couldn't find any trouble";
         }
-        else
-        {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
-            int goldDiff = (int)(Math.random() * 10) + 1;
-            if (Math.random() > noTroubleChance && Math.random() < 0.7)
+        else if (Math.random() > noTroubleChance && Math.random() < 0.7)
             {
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+                int goldDiff = (int)(Math.random() * 10) + 1;
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
             }
             else if(Math.random() < noTroubleChance)
             {
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+                int goldDiff = (int)(Math.random() * 10) + 1;
                 printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
@@ -141,7 +141,7 @@ public class Town
                     hunter.changeGold(+7);
                 }
             }
-        }
+
     }
 
     public String toString()
