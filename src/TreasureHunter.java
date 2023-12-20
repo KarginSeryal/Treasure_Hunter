@@ -125,7 +125,6 @@ public class TreasureHunter
      */
     public void processChoice(String choice)
     {
-
         if(hunter.huntForTreasure()){
             System.out.println("You did great " + hunter.getHunterName() + ".");
             System.out.println("Thank you for freeing use from the cursed artifacts.");
