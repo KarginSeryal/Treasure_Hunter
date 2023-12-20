@@ -4,25 +4,35 @@
  */
 import java.util.Scanner;
 
+
 public class Shop
 {
     // constants
-    private static final int WATER_COST = 2;
-    private static final int ROPE_COST = 4;
-    private static final int MACHETE_COST = 6;
-    private static final int HORSE_COST = 12;
-    private static final int BOAT_COST = 20;
+    private static int WATER_COST = 2;
+    private static int ROPE_COST = 4;
+    private static int MACHETE_COST = 6;
+    private static  int HORSE_COST = 12;
+    private static  int BOAT_COST = 20;
 
     // instance variables
     private double markdown;
     private Hunter customer;
 
+
     //Constructor
-    public Shop(double markdown)
+    public Shop(double markdown, boolean easy)
     {
+        if(easy){
+            WATER_COST /=2;
+            ROPE_COST /=2;
+            MACHETE_COST /=2;
+            HORSE_COST /=2;
+            BOAT_COST /=2;
+        }
         this.markdown = markdown;
         customer = null;
     }
+
 
     /** method for entering the shop
      * @param hunter  the Hunter entering the shop
@@ -32,23 +42,26 @@ public class Shop
     {
         customer = hunter;
 
+
         Scanner scanner = new Scanner(System.in);
         if (buyOrSell.equals("B") || buyOrSell.equals("b"))
         {
-            System.out.println("Welcome to the shop! We have the finest wares in town.");
-            System.out.println("Currently we have the following items:");
+            System.out.println("WELCOME TO THE SHOP! WE HAVE THE FINEST WARES IN TOWN");
+            System.out.println("CURRENTLY WE HAVE THE FOLLOWING ITEMS:");
+            System.out.println("");
             System.out.println(inventory());
-            System.out.print("What're you lookin' to buy? ");
+            System.out.print("WHAT'RE YOU LOOKIN' TO BUY? ");
             String item = scanner.nextLine();
             int cost = checkMarketPrice(item, true);
             if (cost == 0)
             {
-                System.out.println("We ain't got none of those.");
+                System.out.println("WE AIN'T GOT NONE OF THOSE.");
             }
             else
             {
-                System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
+                System.out.print("IT'LL COST YOU " + cost + " GOLD. BUY IT (Y/N)? ");
                 String option = scanner.nextLine();
+
 
                 if (option.equals("y") || option.equals("Y"))
                 {
@@ -58,18 +71,19 @@ public class Shop
         }
         else
         {
-            System.out.println("What're you lookin' to sell? ");
-            System.out.print("You currently have the following items: " + customer.getInventory());
+            System.out.println("WHAT'RE YOU LOOKIN' TO SELL? ");
+            System.out.print("YOU CURRENTLY HAVE THE FOLLOWING ITEMS: " + customer.getInventory());
             String item = scanner.nextLine();
             int cost = checkMarketPrice(item, false);
             if (cost == 0)
             {
-                System.out.println("We don't want none of those.");
+                System.out.println("WE DON'T WANT NONE OF THOSE.");
             }
             else
             {
-                System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
+                System.out.print("IT'LL GET YOU " + cost + " GOLD. SELL IT (Y/N)? ");
                 String option = scanner.nextLine();
+
 
                 if (option.equals("y") || option.equals("Y"))
                 {
@@ -77,6 +91,35 @@ public class Shop
                 }
             }
         }
+    }
+    public void adjustForEasyMode()
+    {
+        WATER_COST /= 2;
+        ROPE_COST /= 2;
+        MACHETE_COST /= 2;
+        HORSE_COST /= 2;
+        BOAT_COST /= 2;
+    }
+
+
+    public static int getWaterCost() {
+        return WATER_COST;
+    }
+
+    public static int getRopeCost() {
+        return ROPE_COST;
+    }
+
+    public static int getMacheteCost() {
+        return MACHETE_COST;
+    }
+
+    public static int getHorseCost() {
+        return HORSE_COST;
+    }
+
+    public static int getBoatCost() {
+        return BOAT_COST;
     }
 
     /** A method that returns a string showing the items available in the shop (all shops sell the same items)
@@ -91,8 +134,10 @@ public class Shop
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
 
+
         return str;
     }
+
 
     /**
      * A method that lets the customer (a Hunter) buy an item.
@@ -103,13 +148,14 @@ public class Shop
         int costOfItem = checkMarketPrice(item, true);
         if (customer.buyItem(item, costOfItem))
         {
-            System.out.println("Ye' got yerself a " + item + ". Come again soon.");
+            System.out.println("YE' GOT YERSELF A " + item + " COME AGAIN SOON.");
         }
         else
         {
-            System.out.println("Hmm, either you don't have enough gold or you've already got one of those!");
+            System.out.println("HMM, EITHER YOU DON'T HAVE ENOUGH GOLD OR YOU'VE ALREADY GOT ONE OF THOSE!");
         }
     }
+
 
     /**
      * A pathway method that lets the Hunter sell an item.
@@ -128,6 +174,7 @@ public class Shop
         }
     }
 
+
     /**
      * Determines and returns the cost of buying or selling an item.
      * @param item The item in question.
@@ -145,6 +192,7 @@ public class Shop
             return getBuyBackCost(item);
         }
     }
+
 
     /**
      * Checks the item entered against the costs listed in the static variables.
@@ -179,6 +227,7 @@ public class Shop
             return 0;
         }
     }
+
 
     /**
      * Checks the cost of an item and applies the markdown.
