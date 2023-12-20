@@ -137,7 +137,7 @@ public class Hunter
      * @param item The item to be added to the kit.
      * @returns true if the item is not in the kit and has been added.
      */
-    private boolean addItem(String item)
+    public boolean addItem(String item)
     {
         if (!hasItemInKit(item))
         {
@@ -213,8 +213,20 @@ public class Hunter
         return str;
     }
 
-
+    public void checkTreasure(){
+        hunterTreasureAmount = 0;
+        if(kit.contains("19$ Fortnite card")){
+            hunterTreasureAmount++;
+        }
+        if(kit.contains("Book of Rizzilations")){
+            hunterTreasureAmount++;
+        }
+        if(kit.contains("RTX 4090 GPU")){
+            hunterTreasureAmount++;
+        }
+    }
     public boolean huntForTreasure() {
+        checkTreasure();
         if (hunterTreasureAmount == 3) {
             return true;
         }
