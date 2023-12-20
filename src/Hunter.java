@@ -216,26 +216,12 @@ public class Hunter
 
     public boolean huntForTreasure() {
         if (hunterTreasureAmount == 3) {
-            System.out.println("Congratulations! You've found all three treasures. Game Over!");
-
-
-
-
+            return true;
         }
         return false;
+    }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    } }
+}
 
