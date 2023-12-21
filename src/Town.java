@@ -51,6 +51,10 @@ public class Town
         }
 
     }
+    public void TownToughness() {
+        toughTown = false;
+    }
+
 
     public String getLatestNews()
     {
@@ -110,49 +114,7 @@ public class Town
      * The chances of finding a fight and winning the gold are based on the toughness of the town.<p>
      * The tougher the town, the easier it is to find a fight, and the harder it is to win one.
      */
-    public void lookForTrouble()
-    {
-        double noTroubleChance;
-        if (toughTown)
-        {
-            noTroubleChance = 0.66;
-        }
-        else
-        {
-            noTroubleChance = 0.33;
-        }
 
-        if (Math.random() > noTroubleChance)
-        {
-            printMessage = "You couldn't find any trouble";
-        }
-        else if (Math.random() > noTroubleChance && Math.random() < 0.7)
-            {
-                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
-                int goldDiff = (int)(Math.random() * 10) + 1;
-                printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
-                printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
-                hunter.changeGold(goldDiff);
-            }
-            else if(Math.random() < noTroubleChance)
-            {
-                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
-                int goldDiff = (int)(Math.random() * 10) + 1;
-                printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
-                printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
-                hunter.changeGold(-1 * goldDiff);
-            }else if(Math.random() > 0.7){
-                printMessage += "You found a mysterious chest on the outskirts of the town.";
-                printMessage += "\nYou unlocked the chest and received the Mythic " + treasure + ".";
-                hunter.addItem(treasure);
-                if(hunter.hasItemInKit(treasure)){
-                    printMessage += "\n\nYou already have the " + treasure + ".";
-                    printMessage += "\nIt will be recycled for gold.";
-                    hunter.changeGold(+7);
-                }
-            }
-
-    }
 
     public String toString()
     {
@@ -206,4 +168,36 @@ public class Town
     public boolean isHasTreasure() {
         return hasTreasure;
     }
+    public void lookForTrouble() {
+        double noTroubleChance;
+
+        if (toughTown) {
+            noTroubleChance = 0.66;
+        } else {
+            noTroubleChance = 0.33;
+        }
+
+        if (Math.random() > noTroubleChance) {
+            printMessage = "You couldn't find any trouble";
+        } else {
+            if (Math.random() > noTroubleChance && Math.random() < 0.7) {
+
+                int goldDiff = (int) (Math.random() * 15) + 5;
+                printMessage = "You won the brawl and receive " + goldDiff + " gold.";
+                hunter.changeGold(goldDiff);
+            } else if (Math.random() < noTroubleChance) {
+
+                int goldDiff = (int) (Math.random() * 5) + 1;
+                printMessage = "You lost the brawl and pay " + goldDiff + " gold.";
+                hunter.changeGold(-1 * goldDiff);
+            } else if (Math.random() > 0.7) {
+
+                printMessage += "You found a mysterious chest on the outskirts of the town!";
+                printMessage += "You unlocked the chest and received a reward!";
+
+            }
+        }
+    }
 }
+
+
