@@ -11,6 +11,7 @@ public class TreasureHunter
     //Instance variables
     private Town currentTown;
     private Hunter hunter;
+    private Casino casino;
     private boolean hardMode;
 
     private boolean easyMode;
@@ -63,7 +64,7 @@ public class TreasureHunter
     }
     }
 
-
+    public TreasureHunter getTHunter
 
 
     /**
@@ -81,6 +82,11 @@ public class TreasureHunter
             // and the town is "tougher"
             toughness = 0.75;
         }
+
+
+
+
+        casino = new Casino(hardMode, hunter);
 
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
@@ -119,6 +125,7 @@ public class TreasureHunter
             System.out.println("(B)uy something at the shop.");
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
+            System.out.println("(G)amble in the casino.");
             System.out.println("(L)ook for trouble!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
@@ -129,9 +136,15 @@ public class TreasureHunter
         }
     }
 
+    public boolean isHardMode() {
+        return hardMode;
+    }
+
     /**
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
+     *
      * @param choice The action to process.
+     * @return
      */
     public void processChoice(String choice)
     {
@@ -165,13 +178,14 @@ public class TreasureHunter
         {
             System.out.println("You did well " + hunter.getHunterName() + ".");
             processChoice("x");
-        }else
+        }
+        else if (choice.equals("G") || choice.equals("g") ) {
+            casino.gamble();
+        }
+        else
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
-
-
-
-
     }
+
 }
